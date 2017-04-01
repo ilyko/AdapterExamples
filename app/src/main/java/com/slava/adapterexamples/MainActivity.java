@@ -9,11 +9,14 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fragment mainFragment = getSupportFragmentManager()
-                .findFragmentByTag(MainFragmentGridView.class.getCanonicalName());
+                .findFragmentByTag(MainFragmentRecyclerView.class.getCanonicalName());
         if (mainFragment == null) {
-            addFragment(this, new MainFragmentGridView(), R.id.coordinator_layout, false);
+            //addFragment(this, new MainFragmentGridView(), R.id.coordinator_layout, false);
+            addFragment(this, new MainFragmentRecyclerView(), R.id.coordinator_layout, false);
         }
     }
+
+
 
     @Override
     public int getLayout() {

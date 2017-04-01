@@ -3,21 +3,25 @@ import android.database.DataSetObserver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.slava.adapterexamples.*;
+
+import java.util.ArrayList;
+
 /**
  * Created by Slava on 28.03.2017.
  */
     public class MainAdapter implements ListAdapter {
 
-    private DataSetObserver mDataSetObserver;
+        private DataSetObserver mDataSetObserver;
         private String[] array;
+        private ArrayList<String> arrayList;
 
-        public MainAdapter(String[] array) {
-            this.array = array;
+        public MainAdapter(ArrayList<String> array) {
+            this.arrayList = array;
         }
 
         @Override
@@ -32,17 +36,17 @@ import com.slava.adapterexamples.*;
 
         @Override
         public int getCount() {
-            return array.length;
+            return arrayList.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return array[position];
+            return arrayList.get(position);
         }
 
         @Override
         public long getItemId(int position) {
-            return array[position].hashCode();
+            return arrayList.get(position).hashCode();
         }
 
         @Override
@@ -59,10 +63,9 @@ import com.slava.adapterexamples.*;
 
             TextView tvId = (TextView) convertView.findViewById(R.id.text_id);
             TextView tvName = (TextView) convertView.findViewById(R.id.text_name);
-
             tvId.setText("" + position);
-            tvName.setText(array[position]);
-
+            tvName.setText(arrayList.get(position));
+            LogUtil.info(this, " "+position);
             return convertView;
         }
 
@@ -90,4 +93,8 @@ import com.slava.adapterexamples.*;
         public boolean isEnabled(int position) {
             return true;
         }
+
+    public DataSetObserver getmDataSetObserver() {
+        return mDataSetObserver;
     }
+}
